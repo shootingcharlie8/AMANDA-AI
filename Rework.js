@@ -92,6 +92,6 @@ function send404Response(response){
 
 app.use(express.static(__dirname + '/public'));
 
-server.listen(8080, function () {
-  console.log('Server listening at port %d 8080');
+server.listen(3000, function () {
+  console.log('Server listening at port %d 3000');
 });
