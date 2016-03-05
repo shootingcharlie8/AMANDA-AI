@@ -32,7 +32,8 @@ io.on('connection', function (socket) {
 		console.log("Test 3 = " + HostSession[NumberOfHosts].HostCode);
 		socket.broadcast.emit('recieve code', {
 			Code: genCode
-		});	
+		});
+		console.log("Test 4")
 	});
 	
 	socket.on("join session", function(Code){//Checks the code
