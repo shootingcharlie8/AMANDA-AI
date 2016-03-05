@@ -30,7 +30,7 @@ io.on('connection', function (socket) {
 		HostSession[NumberOfHosts].HostCode = genCode;
 		HostSession[NumberOfHosts].HostSessionName = Name;
 		console.log("Test 3 = " + HostSession[NumberOfHosts].HostCode);
-		socket.broadcast.emit('recieve code', {
+		socket.emit('recieve code', {
 			Code: genCode
 		});
 		console.log("Test 4")
@@ -71,6 +71,8 @@ function genRand()	{
 	{
 		for(i=0;i<NumberOfHosts;i++)
 		{
+			console.log(genCode);
+			console.log(HostSession[i]);
 			if(HostSession[i].HostCode == genCode)
 			{
 				UniqueCode = false;
