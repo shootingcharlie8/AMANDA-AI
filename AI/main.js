@@ -28,5 +28,17 @@ function findresponce(userinput){
     var RawContents = all.contentWindow.document.body.childNodes[0].innerHTML;
     //alert(RawContents);
     var searchreturn = RawContents.search("K" + userinput);
-    alert(searchreturn);
+    while (RawContents.indexOf("\r") >= 0)
+        RawContents = RawContents.replace("\r", "");
+    var arrLines = RawContents.split("\n");
+    for (var i = 0; i < arrLines.length; i++) {
+        var curLine = arrLines[i];
+        var found = curLine.search("K" + userinput)
+        if (found != "-1") {
+            alert(curLine.substr(1));
+        };
+        else {
+            alert("Responce not found. I guess you broke the internet.");
+        }
+    }
 }
