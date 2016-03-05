@@ -11,7 +11,7 @@
 			var socket = io.connect('http://localhost:3000/')
 			function ObtainCode()
 			{
-				var Name = document.getElementById("userName").value;
+				var Name = document.getElementById("Name").value;
 
 				socket.emit('generate session', Name);
 			}
@@ -36,7 +36,7 @@
 				<option>20</option>
 				</select>
 <br><br>				
-		<input type="button" value="Start Session" onclick="findResistance()">
+		<input type="button" value="Start Session" onclick="ObtainCode()">
 	</form>
 	</body>
 
