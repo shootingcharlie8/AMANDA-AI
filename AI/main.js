@@ -8,8 +8,10 @@ function LoadFile() {
     console.log(strRawContents);
     //document.getElementById('response').innerHTML = '<p>' + "1" + '</p><br>';
     //alert("File " + oFrame.src + " has " + arrLines.length + " lines");
+    console.log("Loop alert 3");
     console.log("File " + oFrame.src + " has " + arrLines.length + " lines!");
     for (var i = 0; i < arrLines.length; i++) {
+        console.log("Loop alert 5");
         var curLine = arrLines[i];
         //alert("Line #" + (i + 1) + " is: '" + curLine + "'");
         //document.getElementById('response').innerHTML = '<p>' + curLine + '</p><br>';
@@ -17,6 +19,7 @@ function LoadFile() {
     }
 }
 function input() {
+    console.log("Loop alert 4");
     var div = document.getElementById('response');
     var userinput = document.getElementById('userresponse').value.toUpperCase();
     div.innerHTML = div.innerHTML + '<p>' + userinput + '</p>';
@@ -30,17 +33,22 @@ function findresponse(userinput, div){
     var RawContents = all.contentWindow.document.body.childNodes[0].innerHTML;
     //alert(RawContents);
     var searchreturn = RawContents.search("K" + userinput);
+    console.log("Loop alert 2");
     while (RawContents.indexOf("\r") >= 0)
         RawContents = RawContents.replace("\r", "");
     var arrLines = RawContents.split("\n");
     for (var i = 0; i < arrLines.length; i++) {
+        console.log("Loop alert 1");
         var curLine = arrLines[i];
         var found = curLine.search("K" + userinput)
+        console.log("found = " + found)
         if (found != "-1") {
             var responseArray = new Array();
             //alert(curLine.substr(1));
+            console.log("maybe infinate1")
             while (curLine != "#"){
-                var curLine = arrLines[found];
+                var curLine = arrLines[i];
+                console.log(arrLines[i])
                 if (curLine != "#" & curLine.charAt(0) != "C") {
                     responseArray.push(curLine.substr(1));
                 };
@@ -48,7 +56,9 @@ function findresponse(userinput, div){
                 var found = found + 1;
                 console.log(curLine);
                 //console.log(found);
+                i++;
             }
+
             console.log(responseArray);
             console.log(responseArray.length);
             var u = responseArray.length;
@@ -74,9 +84,7 @@ function findresponse(userinput, div){
 
             //div.innerHTML = div.innerHTML + '<p>' + userinput + '</p>';
         }
-        /*else {
-            alert("response not found. I guess you broke the internet.");
-        };*/
+        
     }
 }
 function writeresponce(response, div) {
