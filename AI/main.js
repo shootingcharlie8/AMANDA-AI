@@ -78,7 +78,7 @@ function findresponse(userinput, div){
             }
             else if (RandomResponceInt <= u) {
                 console.log("Writes 'undefined': " + responseArray[RandomResponceInt])
-                if (responseArray[RandomResponceInt] == "undefined") {
+                if (responseArray[RandomResponceInt] == undefined) {
                     div.innerHTML = div.innerHTML + '<p>' + "*!Try Again!*" + '</p>';
                 }
                 else {
@@ -102,6 +102,9 @@ function findresponse(userinput, div){
 function writeresponce(response, div) {
     console.log("Start of 'writeresponce'");
     console.log("Writing: " + response)
-    div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
+    if (response != undefined) {
+        div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
+
+    };
 
 }
