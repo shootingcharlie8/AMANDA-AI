@@ -1,15 +1,19 @@
 <head>
-	<iframe id="frmFile" src="script.txt" onload="LoadFile();" style="display: none;">
-		
+	<iframe id="frmFile" src="script.txt" onload="LoadFile();" style="display: none;">	
 	</iframe>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js?ver=1.4.2'></script>
 </head>
 <body>
-<script type="text/javascript" src="main.js">
-</script>
-<form>
-	<div id="response"></div>
-	<input type="text" name="name" id="userresponse"><br>
+<script src="main.js"></script>
+<div id="response"></div>
+<input type="text" name="name" id="userresponse"><br>
+<button onclick="input()">Type</button>
+<script> 
+$( "#userresponse" ).keypress(function( event ) {
+  	if ( event.which == 13 ) {
+  		input();
+  	}
+})
+  </script>
 
-</form>
-	<button onclick="input()">Type</button> 
 </body>

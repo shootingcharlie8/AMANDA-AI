@@ -32,7 +32,7 @@ function findresponse(userinput, div){
     var all = document.getElementById("frmFile");
     var RawContents = all.contentWindow.document.body.childNodes[0].innerHTML;
     //alert(RawContents);
-    var searchreturn = RawContents.search("K" + userinput);
+    var searchreturn = RawContents.search("\bK" + userinput + "\b");
     console.log("Loop alert 2");
     while (RawContents.indexOf("\r") >= 0)
         RawContents = RawContents.replace("\r", "");
@@ -47,6 +47,7 @@ function findresponse(userinput, div){
             //alert(curLine.substr(1));
             console.log("maybe infinate1")
             while (curLine != "#"){
+                i++;
                 var curLine = arrLines[i];
                 console.log(arrLines[i])
                 if (curLine != "#" & curLine.charAt(0) != "C") {
@@ -56,18 +57,18 @@ function findresponse(userinput, div){
                 var found = found + 1;
                 console.log("curLine = " + curLine);
                 //console.log(found);
-                i++;
+                
             }
 
             console.log(responseArray);
             console.log(responseArray.length);
             var u = responseArray.length;
-            var RandomResponceDec = ((Math.random() * u) + 1);
+            var RandomResponceDec = ((Math.random() * u) + 0);
             console.log("RandomResponceDec=" + RandomResponceDec);
             var RandomResponceInt = RandomResponceDec.toFixed(0);
             console.log(RandomResponceInt);
             // CHECK IF RandomResponceInt IS OVER NUMBER OF RESPONCES
-            if (RandomResponceInt > u) {
+            while (RandomResponceInt >= u) {
                 console.log("RandomResponceInt IS TOO BIG! Stepping Down by 1");
                 var RandomResponceInt = RandomResponceInt-1
                 if (RandomResponceInt > u) {
@@ -76,13 +77,16 @@ function findresponse(userinput, div){
                 };
 
             }
-            else if (RandomResponceInt <= u) {
+            if (RandomResponceInt <= u) {
                 console.log("Writes 'undefined': " + responseArray[RandomResponceInt])
                 if (responseArray[RandomResponceInt] == undefined) {
-                    div.innerHTML = div.innerHTML + '<p>' + "*!Try Again!*" + '</p>';
+                    //div.innerHTML = div.innerHTML + '<p>' + "*!Try Again!*" + '</p>';
+                    console.log("***CALLED ERRORLOOP***")
+                    errorloop(responseArray[RandomResponceInt], div);
+
                 }
                 else {
-                    writeresponce(responseArray[RandomResponceInt], div); 
+                    writeresponce(responseArray[RandomResponceInt].toString(), div); 
 
                 }
 
@@ -99,12 +103,18 @@ function findresponse(userinput, div){
 
 
 }
+function errorloop(response, div){
+    writeresponce(response, div); 
+}
 function writeresponce(response, div) {
     console.log("Start of 'writeresponce'");
     console.log("Writing: " + response)
     if (response != undefined) {
         div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
 
-    };
+    }
+    else {
+        console.log("Last resort caught undefined!")
+    }
 
 }
