@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+function gameSetup()
+{
+	var turn = 0;
+	var playerCount = 0; //sets from server
+	var playersHealth = new Array();
+	var playersHeal = new Array();
+	var playersDefend = new Array();
+	
+	var hostGold = 10;
+	var hostUnitsHealth = new Array()
+	
+	for (int i = 1; i <= playerCount; i++)
+	{
+		playersHealth.push(100);
+		playersHeal.push(10);
+		playersDefend.push(.5);
+		
+	}
+
+	
+}	
+
+function playerAttack(i)
+{
+	hostUnitsHealth[i-1] -= dmg;
+	
+}
+
+function healPlayer(player, amt)
+{
+	playersHealth[i-1] += playersHeal[i-1];
+	
+}
+</script>
+</head>
+</html>
