@@ -31,9 +31,11 @@ function inputtext() {
         findresponse(userinput, div);
         var inputField = document.getElementById('userresponse');
         inputField.value = "";
+
     }
 }
 function findresponse(userinput, div){
+    div.scrollTop = div.scrollHeight;
     var all = document.getElementById("frmFile");
     var RawContents = all.contentWindow.document.body.childNodes[0].innerHTML;
     //console.log(RawContents);
