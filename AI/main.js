@@ -1,4 +1,4 @@
-function LoadFile() {
+function LoadDaFilez() {
     var div = document.getElementById('response');
     var oFrame = document.getElementById("frmFile");
     var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
@@ -18,7 +18,7 @@ function LoadFile() {
         //div.innerHTML = div.innerHTML + '<p>' + curLine + '</p>';
     }
 }
-function input() {
+function inputtext() {
     console.log("Loop alert 4");
     var div = document.getElementById('response');
     var userinput = document.getElementById('userresponse').value.toUpperCase();
@@ -27,22 +27,46 @@ function input() {
     if (userinput != "") {
         findresponse(userinput, div);
     }
+    var inputField = document.getElementById('userresponse');
+    inputField.value = "";
 }
 function findresponse(userinput, div){
     var all = document.getElementById("frmFile");
     var RawContents = all.contentWindow.document.body.childNodes[0].innerHTML;
     //alert(RawContents);
-    var searchreturn = RawContents.search("\bK" + userinput + "\b");
+    var searchreturn = RawContents.match('/K' + userinput + '/g');
     console.log("Loop alert 2");
-    while (RawContents.indexOf("\r") >= 0)
-        RawContents = RawContents.replace("\r", "");
+    //while (RawContents.indexOf("\r") >= 0) 
+        //RawContents = RawContents.replace("\r", "");
     var arrLines = RawContents.split("\n");
     for (var i = 0; i < arrLines.length; i++) {
-        //console.log("Loop alert 1");
+        console.log("ran for loop!")
+        //console.log("arrLines[i] = " + arrLines[i]);
         var curLine = arrLines[i];
-        var found = curLine.search("K" + userinput)
+        console.log('K' + userinput)
+        var y = 0;
+        while (arrLines[y] <= arrLines.length){
+            if (arrLines[i] == 'K' + userinput) {
+                var found = true;
+                console.log("found it!");
+                break;
+            }
+            else {
+                var found = false;
+                console.log(found)
+            }
+            y++;
+        }
+        if (arrLines[i] === 'K' + userinput) {
+            var found = true;
+        }
+        else {
+            var found = false;
+            console.log(found)
+        }
+        //var found = curLine.match(/K + userinput + /g)
         //console.log("found = " + found)
-        if (found != "-1") {
+        if (found == true) {
             var responseArray = new Array();
             //alert(curLine.substr(1));
             console.log("maybe infinate1")
@@ -91,17 +115,18 @@ function findresponse(userinput, div){
                 }
 
             }
-            else {
-                console.log("not found!")
-                div.innerHTML = div.innerHTML + '<p>' + "*RESPONCE NOT FOUND*" + '</p>';
 
 
             //div.innerHTML = div.innerHTML + '<p>' + userinput + '</p>';
         }
+        else {
+            console.log("not found!")
+            div.innerHTML = div.innerHTML + '<p>' + "*RESPONCE NOT FOUND*" + '</p>';
+            break;
+        }
+
     }
-}
-
-
+    
 }
 function errorloop(response, div){
     writeresponce(response, div); 
