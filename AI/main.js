@@ -35,18 +35,41 @@ function findresponse(userinput, div){
         var curLine = arrLines[i];
         var found = curLine.search("K" + userinput)
         if (found != "-1") {
-                var responseArray = new Array();
+            var responseArray = new Array();
             //alert(curLine.substr(1));
             while (curLine != "#"){
                 var curLine = arrLines[found];
-                responseArray.push(curLine.substr(1));
-                alert(responseArray)
+                if (curLine != "#") {
+                    responseArray.push(curLine.substr(1));
+                };
+                //alert(responseArray)
                 var found = found + 1;
                 console.log(curLine);
-                console.log(found);
-
+                //console.log(found);
             }
             console.log(responseArray);
+            console.log(responseArray.length);
+            var u = responseArray.length;
+            var RandomResponceDec = ((Math.random() * u) + 1);
+            console.log("RandomResponceDec=" + RandomResponceDec);
+            var RandomResponceInt = RandomResponceDec.toFixed(0);
+            console.log(RandomResponceInt);
+            // CHECK IF RandomResponceInt IS OVER NUMBER OF RESPONCES
+            if (RandomResponceInt > u) {
+                console.log("RandomResponceInt IS TOO BIG! Stepping Down by 1");
+                var RandomResponceInt = RandomResponceInt-1
+                if (RandomResponceInt > u) {
+                    console.log("YOUR CODE IS F***ED UP!");
+                    alert("critical error!")
+                };
+
+            }
+            else {
+                console.log(responseArray[RandomResponceInt])
+                //writeresponce(responseArray[RandomResponceInt]);
+            }
+
+
             //div.innerHTML = div.innerHTML + '<p>' + userinput + '</p>';
         }
         /*else {
