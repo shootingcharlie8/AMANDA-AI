@@ -48,19 +48,22 @@ function findresponse(userinput, div){
     //console.log(arrLines.length)
     var found = false;
     console.log("userinput: " + userinput)
-    while (i <= arrLines.length) {
+    while (i < arrLines.length) {
             //console.log("ran for loop!")
         //console.log("arrLines[i] = " + arrLines[i]);
         var curLine = arrLines[i];
-
+        //console.log(arrLines[i])
         //alert(curLine)
         //console.log('K' + userinput)
         var found2 = curLine.indexOf('K' + userinput);
         console.log(found);
         if (found2 == 0) {
             var found = true;
+            console.log(curLine)
+            console.log(found2)
             break;
         }
+
 
         /*if (arrLines[i] == 'K' + userinput) {
             var found = true;
@@ -127,41 +130,44 @@ function findresponse(userinput, div){
         else {
             // console.log("not found!")
             div.innerHTML = div.innerHTML + '<p>' + "*RESPONSE NOT FOUND*" + '</p>';
-            //learn(div, userinput);
+            learn(div, userinput);
 
         };
     }
-    function errorloop(response, div){
-        writeresponce(response, div); 
-    }
-    function writeresponce(response, div) {
-        // console.log("Start of 'writeresponce'");
-        // console.log("Writing: " + response)
-        if (response != undefined) {
-            div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
-
-        }
-        else {
-            // console.log("Last resort caught undefined!")
-        }
+function errorloop(response, div){
+    writeresponce(response, div); 
+}
+function writeresponce(response, div) {
+    // console.log("Start of 'writeresponce'");
+    // console.log("Writing: " + response)
+    if (response != undefined) {
+        div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
 
     }
+    else {
+        // console.log("Last resort caught undefined!")
+    }
 
-    function learn(div, userinput){
-        var InitIntro = 'HELLO, YOU HAVE ENTERED THE LEARNING FUNCTION OF AMANDA.'
-        var InitIntro2 = 'PLEASE ENTER MATCHING PHRASE'
-        div.innerHTML = div.innerHTML + '<p>LEARNING: ' + InitIntro + '</p>';
-        div.innerHTML = div.innerHTML + '<p>LEARNING: ' + InitIntro2 + '</p>';
-        if (userinput == '!exit') {
-            div.innerHTML = div.innerHTML + '<p>LEARNING: ' + 'InitIntro2' + '</p>';
+div.scrollTop = div.scrollHeight;
 
-        }
-        else {
-            var fso = new ActiveXObject("Scripting.FileSystemOject");
-        var sciptTXT = "file.txt"; // Use this instead
-        var fileObject = fso.OpenTextFile(sciptTXT, 8, true);
-        file.WriteLine(id + "|" + pass);
-        fileObject.close();
+
+}
+
+function learn(div, userinput){
+    var InitIntro = 'HELLO, YOU HAVE ENTERED THE LEARNING FUNCTION OF AMANDA.'
+    var InitIntro2 = 'PLEASE ENTER MATCHING PHRASE'
+    div.innerHTML = div.innerHTML + '<p>LEARNING: ' + InitIntro + '</p>';
+    div.innerHTML = div.innerHTML + '<p>LEARNING: ' + InitIntro2 + '</p>';
+    if (userinput == '!exit') {
+        div.innerHTML = div.innerHTML + '<p>LEARNING: ' + 'InitIntro2' + '</p>';
+
+    }
+    else {
+        $.ajax({
+            url: 'file.txt'
+            }).done(function(data) {
+        $('#content').append(data);
+});
 
     }
 
