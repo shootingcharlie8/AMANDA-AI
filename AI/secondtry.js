@@ -53,12 +53,13 @@ function findresponse(userinput, div){
 
         //alert(curLine)
         //console.log('K' + userinput)
-        var found = curLine.indexOf('K' + userinput);
+        var found2 = curLine.indexOf('K' + userinput);
         console.log(found);
-        if (found == 0) {
+        if (found2 == 0) {
             var found = true;
             break;
-        };
+        }
+
         /*if (arrLines[i] == 'K' + userinput) {
             var found = true;
             //console.log("found it!");
@@ -80,7 +81,7 @@ function findresponse(userinput, div){
                 responseArray.push(curLine.substr(1));
             };
             //alert(responseArray)
-            var found = found + 1;
+            //var found = found + 1;
             //console.log("curLine = " + curLine);
             //console.log(found);
             
@@ -121,7 +122,7 @@ function findresponse(userinput, div){
 
             //div.innerHTML = div.innerHTML + '<p>' + userinput + '</p>';
         }
-        else if (found == false) {
+        else {
             // console.log("not found!")
             div.innerHTML = div.innerHTML + '<p>' + "*RESPONSE NOT FOUND*" + '</p>';
             //learn(div, userinput);
