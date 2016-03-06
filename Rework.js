@@ -22,7 +22,6 @@ var NumberOfGuests = 0;
 io.on('connection', function (socket) {
 	
 	socket.on("generate session", function(Name){
-		NumberOfHosts++;
 		console.log("Test 1 + " + Name);
 		genRand();
 		console.log("Test 2 = " + genCode);
@@ -33,31 +32,76 @@ io.on('connection', function (socket) {
 		socket.emit('recieve code', {
 			Code: genCode
 		});
-		console.log("Test 4")
+		console.log("Test 4");
+		console.log(HostSession.length + " All the people in host Session");
+		NumberOfHosts++;
 	});
 	
 	socket.on("join session", function(Code){//Checks the code
-		for(i=0;i<NumberOfGuests;i++)
+		var GivenName = Code.dataName;
+		var GivenCode = Code.dataCode;
+		var GroupList = [];
+		console.log("JS Test 1");
+		for(i=0;i<NumberOfHosts;i++)
 		{
-			if(HostSession[i].HostCode == Code.userCode)
+			console.log(Code);
+			if(HostSession[i].HostCode == GivenCode)
 			{
-				NumberOfGuests++;
 				ValidCode = true;
 				TempHolder = i;//This holds the position to store data
 				break;
 			}else{
 				ValidCode = false;
-				socket.broadcast.emit('Bad Code', {
+				socket.emit('Bad Code', {
 					result: false
 				});
+				console.log("Before the break");
 				break;
+				console.log("After the break");
 			}	
 		}
 			if(ValidCode == true)
 			{
-				UserSession[TempHolder].UserName = Code.username;
+				NumberOfGuests++;
+				UserSession[TempHolder] = UserClass();
+				UserSession[TempHolder].UserName = GivenName;
 				UserSession[TempHolder].UserResponse = "";
-				UserSession[TempHolder].UserCode = Code.userCode;
+				UserSession[TempHolder].UserCode = GivenCode;
+				console.log(UserSession[TempHolder]);
+				console.log(NumberOfGuests + " This is number of Guests");
+				if(NumberOfGuests != 1)
+				{
+					for(i=1;i<NumberOfGuests;i++)
+					{
+						if(UserSession[i-1].UserCode == GivenCode)
+						{
+							GroupList.push(UserSession[i-1].UserName);
+							//GroupList[i] = UserSession[i].UserName;
+							console.log(i + " This is place in array");
+							console.log(UserSession.length + " This is length of the UserSession");
+						}
+					}
+				}else{
+					for(i=0;i<NumberOfGuests;i++)
+					{
+						if(UserSession[i].UserCode == GivenCode)
+						{
+							GroupList.push(UserSession[i].UserName);
+							//GroupList[i] = UserSession[i].UserName;
+							console.log(i + " This is the first iteration");
+							console.log(UserSession.length + " This is length of the UserSession");
+							//console.log(UserSession.length);
+						}
+					}
+				}
+				console.log(GroupList + " Everyone in the group list array");
+				socket.emit('user recieve code', {
+					Code: GivenCode
+				});
+				io.sockets.emit('displayName', {
+					Code:GivenCode,
+					List:GroupList
+				});
 			}
 	});
 });
@@ -67,7 +111,7 @@ io.on('connection', function (socket) {
 	
 function genRand()	{
 	genCode = Math.floor(Math.random() * 100000);
-	if(NumberOfHosts != 1)
+	if(NumberOfHosts != 0)
 	{
 		for(i=0;i<NumberOfHosts;i++)
 		{

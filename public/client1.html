@@ -1,20 +1,49 @@
+<!DOCTYPE HTML>
+<html>
 <head>
-<script src="js/phaser.js"></script>
-<script src="test.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="js/phaser.js"></script>
+	<!--<script src="test.js"></script>-->
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>-->
+	<script src="http://cdn.socket.io/socket.io-1.4.0.js"></script>
+	<script>
+		var socket = io.connect('http://localhost:3000/')
+		var SessionCode;
+		function JoinSession()
+		{
+			var Name = document.getElementById("name").value;
+			var Code = document.getElementById("code").value;
+			var Data = {
+				dataName: Name,
+				dataCode: Code
+			};
+			socket.emit('join session', Data);
+		}
+		
+		socket.on('user recieve code', function(data){
+			SessionCode = data.Code;
+		});
+		
+		socket.on("displayName", function(data) {
+			if(SessionCode == data.Code)
+			{
+				var Temp = document.getElementById("display").innerHTML;
+				document.getElementById("display").innerHTML = Temp + " " +data.List;
+			}
+		});
+	</script>
 </head>
 <body>
 <h2>JOIN SERVER</h2>
 <form>
   Name:<br>
-  <input type="text" name="name"><br>
+  <input type="text" id="name"><br>
   Session Code:<br>
-  <input type="text" name="code">
-  <input type="submit" value="Submit">
-  <a href="snake.html">Play!</a>
-
-</form> 
- <button id="button1" onclick="changebutton1()">Click me to attack</button> </form>
-
+  <input type="text" id="code">
+  <input type="button" value="Submit" onClick="JoinSession()">
+</form>
+<p id="display"></p> 
+</body>
+ <!--<button id="button1" onclick="changebutton1()">Click me to attack</button> </form>-->
+</html>
 
 

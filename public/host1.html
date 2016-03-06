@@ -8,6 +8,7 @@
 		<script src="http://cdn.socket.io/socket.io-1.4.0.js"></script>
 		<script src="js/phaser.js"> </script>
 		<script>
+			var UserCode;
 			var socket = io.connect('http://localhost:3000/')
 			function ObtainCode()
 			{
@@ -17,8 +18,17 @@
 			}
 
 			socket.on('recieve code',function (data) {
-			alert(data.Code);
+			UserCode = data.Code;
+			document.getElementById("codeSpace").innerHTML = UserCode;
 			});
+			
+			socket.on("displayName", function(data) {
+			if(UserCode == data.Code)
+			{
+				var Temp = document.getElementById("display").innerHTML;
+				document.getElementById("display").innerHTML = Temp + " " +data.List;
+			}
+		});
 		</script>
 		
 				
@@ -38,6 +48,8 @@
 <br><br>				
 		<input type="button" value="Start Session" onclick="ObtainCode()">
 	</form>
+<p id="codeSpace"></p>
+<p id="display"></p>
 	</body>
 
 </html>
