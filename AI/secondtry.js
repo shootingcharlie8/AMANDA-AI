@@ -130,7 +130,7 @@ function findresponse(userinput, div){
         else {
             // console.log("not found!")
             div.innerHTML = div.innerHTML + '<p>' + "*RESPONSE NOT FOUND*" + '</p>';
-            learn(div, userinput);
+            //learn(div);
 
         };
     }
@@ -153,19 +153,42 @@ div.scrollTop = div.scrollHeight;
 
 }
 
-function learn(div, userinput){
+function learn(div){
     var InitIntro = 'HELLO, YOU HAVE ENTERED THE LEARNING FUNCTION OF AMANDA.'
-    var InitIntro2 = 'PLEASE ENTER MATCHING PHRASE'
+    var InitIntro2 = 'PLEASE ENTER KEYWORD'
+    var userinput = document.getElementById('userresponse').value.toUpperCase();
+    var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+    var inputfinal = punctuationless.replace(/\s{2,}/g," ");
     div.innerHTML = div.innerHTML + '<p>LEARNING: ' + InitIntro + '</p>';
     div.innerHTML = div.innerHTML + '<p>LEARNING: ' + InitIntro2 + '</p>';
-    if (userinput == '!exit') {
-        div.innerHTML = div.innerHTML + '<p>LEARNING: ' + 'InitIntro2' + '</p>';
+    if (inputfinal == '!exit') {
+        div.innerHTML = div.innerHTML + '<p>LEARNING: ' + 'CALLED "!EXIT": EXITING!' + '</p>';
 
     }
     else {
-    $.post('appendscript.php', { id: 12345 }, function(data) {
-    // Increment vote count, etc
-    });
+        var keyword = 'K' + inputfinal
+        console.log("keyword = " + inputfinal);
+            div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "Is your keyword: " + keyword + '? (Y/n)</p>';
+            var userinput = document.getElementById('userresponse').value.toUpperCase();
+            var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+            var inputfinal = punctuationless.replace(/\s{2,}/g," ");
+            if (inputfinal == "n") {
+                div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "Going back to beginning" + '</p>';
+                learn(div);
+            }
+            else {
+                div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "PLEASE ENTER RESPONSE" + '</p>';
+                var userinput = document.getElementById('userresponse').value.toUpperCase();
+                var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+                var inputResponse = punctuationless.replace(/\s{2,}/g," ");
+                var KeywordResponse = 'R' + inputResponse;
+                div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "RESPONSE SET TO: " + inputResponse + '</p>';
+                div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "APPEND SCRIPT FILE WITH: " + '</p>';
+                div.innerHTML = div.innerHTML + '<p>' + keyword + '</p>';
+                div.innerHTML = div.innerHTML + '<p>' + KeywordResponse + '</p>';
+                div.innerHTML = div.innerHTML + '<p>' + "#" + '</p>';
+
+            }
 
     }
 
