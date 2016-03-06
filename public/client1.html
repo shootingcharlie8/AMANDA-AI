@@ -52,9 +52,48 @@
 		});
 //-------------------------------------------------------------------------------------		
 //-------------------------------------------------------------------------------------			
+		var turn = 0;
+		var playerCount = count; //sets from server
+		var playersAttack = new Array();
+		var playersHealth = new Array(); //array of current health values
+		var playersHeal = new Array(); //array of current health added when healing
+		var playersDefend = new Array(); //array of current percentage of damage blocked when defending
+		var defend = false; //determines if next turn will be defended	
 		
-		
-		
+		function playerAttack(player, unit) //Player attacks enemy unit
+		{	
+			hostUnitsHealth[unit] -= playersAttack[player];
+		}
+
+		function healPlayer(healingPlayer, healedPlayer) //healingPlayer heals healedPlayer by healingPlayer's heal value
+		{
+			playersHealth[healedPlayer] += playersHeal[healingPlayer];
+		}
+
+		function playerDefend(player) //sets defend to true for 1 turn (MAKE SURE TO TURN defend OFF AFTER EACH TURN)
+		{
+			defend = true;
+		}
+
+		function upgradeAbility(player, ability) //Attack = 1, Heal = 2, Defend = 3
+		{
+			if(ability == 1) //Upgrading attack adds 5 attack
+			{
+				playersAttack[player] += 5
+			}
+			else if(ability == 2) //Upgrading heal increases heals by 5
+			{
+				playersHeal[player] +=5;
+			}
+			else if(ability == 3)//Upgrading defend adds 5% defend
+			{ 
+				if(playersDefend[player] < .75)
+				{
+					playersDefend[player] += .05
+				}
+				else playersDefend[player] = .75
+			}
+		}
 		
 	</script>
 </head>
