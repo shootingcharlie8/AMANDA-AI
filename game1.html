@@ -2,16 +2,18 @@
 <html>
 <head>
 <script>
-function gameSetup()
+function gameSetup(count)
 {
 	var turn = 0;
-	var playerCount = 0; //sets from server
-	var playersHealth = new Array();
-	var playersHeal = new Array();
-	var playersDefend = new Array();
+	var playerCount = count; //sets from server
+	var playersHealth = new Array(); //array of current health values
+	var playersHeal = new Array(); //array of current health added when healing
+	var playersDefend = new Array(); //array of current percentage of damage blocked when defending
+	var defend = false; //determines if next turn will be defended
 	
 	var hostGold = 10;
-	var hostUnitsHealth = new Array()
+	var hostUnitTiers = new Array[1];
+	var hostUnitsHealth = new Array();
 	
 	for (int i = 1; i <= playerCount; i++)
 	{
@@ -24,15 +26,27 @@ function gameSetup()
 	
 }	
 
-function playerAttack(i)
+function playerAttack(i) 
 {
 	hostUnitsHealth[i-1] -= dmg;
 	
 }
 
-function healPlayer(player, amt)
+function healPlayer(healingPlayer, healedPlayer) //healingPlayer heals healedPlayer
 {
-	playersHealth[i-1] += playersHeal[i-1];
+	playersHealth[healedPlayer-1] += playersHeal[healingPlayer-1];
+	
+}
+
+function playerDefend(player)
+{
+	defend = true;
+}
+
+function unitAttack(unit, player)
+{
+	if (hostUnitTiers[unit -1] == 1)
+	
 	
 }
 </script>
