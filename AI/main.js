@@ -22,7 +22,7 @@ function input() {
     console.log("Loop alert 4");
     var div = document.getElementById('response');
     var userinput = document.getElementById('userresponse').value.toUpperCase();
-    div.innerHTML = div.innerHTML + '<p>' + userinput + '</p>';
+    div.innerHTML = div.innerHTML + '<p>YOU: ' + userinput + '</p>';
     //alert("input = " + userinput)
     if (userinput != "") {
         findresponse(userinput, div);
@@ -38,10 +38,10 @@ function findresponse(userinput, div){
         RawContents = RawContents.replace("\r", "");
     var arrLines = RawContents.split("\n");
     for (var i = 0; i < arrLines.length; i++) {
-        console.log("Loop alert 1");
+        //console.log("Loop alert 1");
         var curLine = arrLines[i];
         var found = curLine.search("K" + userinput)
-        console.log("found = " + found)
+        //console.log("found = " + found)
         if (found != "-1") {
             var responseArray = new Array();
             //alert(curLine.substr(1));
@@ -54,7 +54,7 @@ function findresponse(userinput, div){
                 };
                 //alert(responseArray)
                 var found = found + 1;
-                console.log(curLine);
+                console.log("curLine = " + curLine);
                 //console.log(found);
                 i++;
             }
@@ -76,19 +76,32 @@ function findresponse(userinput, div){
                 };
 
             }
-            else {
-                console.log(responseArray[RandomResponceInt])
-                writeresponce(responseArray[RandomResponceInt], div);
+            else if (RandomResponceInt <= u) {
+                console.log("Writes 'undefined': " + responseArray[RandomResponceInt])
+                if (responseArray[RandomResponceInt] == "undefined") {
+                    div.innerHTML = div.innerHTML + '<p>' + "*!Try Again!*" + '</p>';
+                }
+                else {
+                    writeresponce(responseArray[RandomResponceInt], div); 
+
+                }
+
             }
+            else {
+            console.log("not found!")
+            div.innerHTML = div.innerHTML + '<p>' + "*RESPONCE NOT FOUND*" + '</p>';
 
 
             //div.innerHTML = div.innerHTML + '<p>' + userinput + '</p>';
-        }
-        
-    }
+            }
+            }
+            }
+
+    
 }
 function writeresponce(response, div) {
     console.log("Start of 'writeresponce'");
-    div.innerHTML = div.innerHTML + '<p>' + response + '</p>';
+    console.log("Writing: " + response)
+    div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
 
 }
