@@ -163,11 +163,9 @@ function learn(div, userinput){
 
     }
     else {
-        $.ajax({
-            url: 'file.txt'
-            }).done(function(data) {
-        $('#content').append(data);
-});
+    $.post('appendscript.php', { id: 12345 }, function(data) {
+    // Increment vote count, etc
+    });
 
     }
 
