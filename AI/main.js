@@ -5,13 +5,15 @@ function LoadFile() {
     while (strRawContents.indexOf("\r") >= 0)
         strRawContents = strRawContents.replace("\r", "");
     var arrLines = strRawContents.split("\n");
+    console.log(strRawContents);
     //document.getElementById('response').innerHTML = '<p>' + "1" + '</p><br>';
     //alert("File " + oFrame.src + " has " + arrLines.length + " lines");
+    console.log("File " + oFrame.src + " has " + arrLines.length + " lines!");
     for (var i = 0; i < arrLines.length; i++) {
         var curLine = arrLines[i];
         //alert("Line #" + (i + 1) + " is: '" + curLine + "'");
         //document.getElementById('response').innerHTML = '<p>' + curLine + '</p><br>';
-        div.innerHTML = div.innerHTML + '<p>' + curLine + '</p>';
+        //div.innerHTML = div.innerHTML + '<p>' + curLine + '</p>';
     }
 }
 function input() {
@@ -39,7 +41,7 @@ function findresponse(userinput, div){
             //alert(curLine.substr(1));
             while (curLine != "#"){
                 var curLine = arrLines[found];
-                if (curLine != "#") {
+                if (curLine != "#" & curLine.charAt(0) != "C") {
                     responseArray.push(curLine.substr(1));
                 };
                 //alert(responseArray)
@@ -66,7 +68,7 @@ function findresponse(userinput, div){
             }
             else {
                 console.log(responseArray[RandomResponceInt])
-                //writeresponce(responseArray[RandomResponceInt]);
+                writeresponce(responseArray[RandomResponceInt], div);
             }
 
 
@@ -76,4 +78,9 @@ function findresponse(userinput, div){
             alert("response not found. I guess you broke the internet.");
         };*/
     }
+}
+function writeresponce(response, div) {
+    console.log("Start of 'writeresponce'");
+    div.innerHTML = div.innerHTML + '<p>' + response + '</p>';
+
 }
