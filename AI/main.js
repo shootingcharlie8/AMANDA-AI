@@ -88,16 +88,16 @@ function findresponse(userinput, div){
 
             }
             else {
-            console.log("not found!")
-            div.innerHTML = div.innerHTML + '<p>' + "*RESPONCE NOT FOUND*" + '</p>';
+                console.log("not found!")
+                div.innerHTML = div.innerHTML + '<p>' + "*RESPONCE NOT FOUND*" + '</p>';
 
 
             //div.innerHTML = div.innerHTML + '<p>' + userinput + '</p>';
-            }
-            }
-            }
+        }
+    }
+}
 
-    
+
 }
 function writeresponce(response, div) {
     console.log("Start of 'writeresponce'");
