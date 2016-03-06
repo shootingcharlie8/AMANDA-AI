@@ -1,6 +1,20 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <style>
+        p.hidden{
+            display: none;
+        }
+        p.visible{
+            display: block;
+        }
+		h2.hidden{
+            display: none;
+        }
+        h2.visible{
+            display: block;
+        }
+	</style>
 	<script src="js/phaser.js"></script>
 	<!--<script src="test.js"></script>-->
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>-->
@@ -8,8 +22,11 @@
 	<script>
 		var socket = io.connect('http://localhost:3000/')
 		var SessionCode;
+
 		function JoinSession()
 		{
+			document.getElementById("Screen1").className = "hidden"
+			document.getElementById("JoinServer").className = "hidden"
 			var Name = document.getElementById("name").value;
 			var Code = document.getElementById("code").value;
 			var Data = {
@@ -29,16 +46,37 @@
 				document.getElementById("display").innerHTML = data.List;
 			}
 		});
+		
+		socket.on("Bad Code", function(data){
+			alert("Code is invalid")
+		});
+//-------------------------------------------------------------------------------------		
+//-------------------------------------------------------------------------------------			
+		
+		
+		
+		
 	</script>
 </head>
 <body>
-<h2>JOIN SERVER</h2>
+<h2 id="JoinServer" class="visible">JOIN SERVER</h2>
 <form>
+<p id="Screen1" class="visible">
   Name:<br>
   <input type="text" id="name"><br>
   Session Code:<br>
   <input type="text" id="code">
   <input type="button" value="Submit" onClick="JoinSession()">
+  </p>
+</form>
+
+<!-- This is battle form -->
+<form>
+<p id="Screen2" class="hidden">
+<input type="button" value="Attack" onClick="">
+<input type="button" value="Defend" onClick="">
+<input type="button" value="upgrade" onClick="">
+</p>
 </form>
 <p id="display"></p> 
 </body>

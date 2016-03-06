@@ -2,18 +2,26 @@
 <html>
 	<head>
 		<title>Host A New Session</title>
-
-		<style type="text/css">
+		<style>
+        p.hidden{
+            display: none;
+        }
+        p.visible{
+            display: block;
+        }
 		</style>
 		<script src="http://cdn.socket.io/socket.io-1.4.0.js"></script>
 		<script src="js/phaser.js"> </script>
 		<script>
 			var UserCode;
 			var socket = io.connect('http://localhost:3000/')
+			var Nothing = 0;
 			function ObtainCode()
 			{
 				var Name = document.getElementById("Name").value;
-
+				document.getElementById("Screen1").className = "hidden"
+				document.getElementById("button1").onclick = function(){StartGame();};
+				document.getElementById("button1").value = "Start the game";
 				socket.emit('generate session', Name);
 			}
 
@@ -23,11 +31,20 @@
 			});
 			
 			socket.on("displayName", function(data) {
-			if(UserCode == data.Code)
+				if(UserCode == data.Code)
+				{
+					document.getElementById("display").innerHTML = data.List;
+				}
+			});
+			
+			function StartGame()
 			{
-				document.getElementById("display").innerHTML = data.List;
+				document.getElementById("codeSpace").innerHTML = ""
+				document.getElementById("display").innerHTML = ""
+				document.getElementById("displayScreen").className = "hidden"
+				socket.emit("start game", Nothing);
+				document.getElementById("Screen2").className = "visible";
 			}
-		});
 		</script>
 		
 				
@@ -36,6 +53,7 @@
 	
 	<body>
 	<form>
+	<p id="Screen1" class="visible">
 	Name <br>
 		<input type="text" id='Name' > <br>
 	Session Length <br>
@@ -44,11 +62,19 @@
 				<option>15</option>
 				<option>20</option>
 				</select>
-<br><br>				
-		<input type="button" value="Start Session" onclick="ObtainCode()">
+	<br><br>
+	</p>	
+	<p id="displayScreen" class="visible">
+	<input type="button" value="Make Session" id="button1" onclick="ObtainCode()">
+	</p>
 	</form>
-<p id="codeSpace"></p>
-<p id="display"></p>
+	<p id="Screen2" class="hidden">
+	<input type="button" value="Spawn Units" onClick="">
+	<input type="button" value="" onClick="">
+	<input type="button" value="upgrade" onClick="">
+	</p>
+	<p id="codeSpace"></p>
+	<p id="display"></p>
 	</body>
 
 </html>
