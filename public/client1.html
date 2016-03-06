@@ -26,8 +26,7 @@
 		socket.on("displayName", function(data) {
 			if(SessionCode == data.Code)
 			{
-				var Temp = document.getElementById("display").innerHTML;
-				document.getElementById("display").innerHTML = Temp + " " +data.List;
+				document.getElementById("display").innerHTML = data.List;
 			}
 		});
 	</script>

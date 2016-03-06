@@ -38,62 +38,70 @@ io.on('connection', function (socket) {
 	});
 	
 	socket.on("join session", function(Code){//Checks the code
+		ValidCode = false;
 		var GivenName = Code.dataName;
 		var GivenCode = Code.dataCode;
 		var GroupList = [];
 		console.log("JS Test 1");
-		for(i=0;i<NumberOfHosts;i++)
+		if(NumberOfGuests != 0)
 		{
-			console.log(Code);
-			if(HostSession[i].HostCode == GivenCode)
+			for(i=0;i<=NumberOfGuests;i++)
 			{
-				ValidCode = true;
-				TempHolder = i;//This holds the position to store data
-				break;
-			}else{
-				ValidCode = false;
-				socket.emit('Bad Code', {
+				console.log(Code);
+				if(HostSession[i].HostCode == GivenCode)
+				{
+					ValidCode = true;
+					
+					break;
+				}
+			}
+		}else{
+				//NumberOfGuests++
+				console.log(Code);
+				if(HostSession[0].HostCode == GivenCode)
+				{
+					ValidCode = true;
+					
+				}else{
+					ValidCode = false;
+					socket.emit('Bad Code', {
 					result: false
-				});
-				console.log("Before the break");
-				break;
-				console.log("After the break");
-			}	
-		}
+					});
+				}	
+			}
+
 			if(ValidCode == true)
 			{
-				NumberOfGuests++;
-				UserSession[TempHolder] = UserClass();
-				UserSession[TempHolder].UserName = GivenName;
-				UserSession[TempHolder].UserResponse = "";
-				UserSession[TempHolder].UserCode = GivenCode;
-				console.log(UserSession[TempHolder]);
+				console.log(NumberOfGuests + "This is ");
+				UserSession[NumberOfGuests] = UserClass();
+				UserSession[NumberOfGuests].UserName = GivenName;
+				UserSession[NumberOfGuests].UserResponse = "";
+				UserSession[NumberOfGuests].UserCode = GivenCode;
+				console.log(UserSession[NumberOfGuests]);
 				console.log(NumberOfGuests + " This is number of Guests");
-				if(NumberOfGuests != 1)
+				if(NumberOfGuests != 0)
 				{
-					for(i=1;i<NumberOfGuests;i++)
+					for(i=0;i<=NumberOfGuests;i++)
 					{
-						if(UserSession[i-1].UserCode == GivenCode)
+						if(UserSession[i].UserCode == GivenCode)
 						{
-							GroupList.push(UserSession[i-1].UserName);
+							GroupList.push(UserSession[i].UserName);
 							//GroupList[i] = UserSession[i].UserName;
 							console.log(i + " This is place in array");
 							console.log(UserSession.length + " This is length of the UserSession");
 						}
 					}
 				}else{
-					for(i=0;i<NumberOfGuests;i++)
-					{
-						if(UserSession[i].UserCode == GivenCode)
+						if(UserSession[0].UserCode == GivenCode)
 						{
-							GroupList.push(UserSession[i].UserName);
+							GroupList.push(UserSession[0].UserName);
 							//GroupList[i] = UserSession[i].UserName;
-							console.log(i + " This is the first iteration");
+							//console.log(0 + " This is the first iteration");
 							console.log(UserSession.length + " This is length of the UserSession");
 							//console.log(UserSession.length);
 						}
 					}
-				}
+				
 				console.log(GroupList + " Everyone in the group list array");
 				socket.emit('user recieve code', {
 					Code: GivenCode
@@ -102,7 +110,13 @@ io.on('connection', function (socket) {
 					Code:GivenCode,
 					List:GroupList
 				});
-			}
+				NumberOfGuests++;
+			}else{
+					ValidCode = false;
+					socket.emit('Bad Code', {
+					result: false
+					});
+				 }
 	});
 });
 	
