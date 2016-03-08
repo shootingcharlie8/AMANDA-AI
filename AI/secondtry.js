@@ -183,10 +183,11 @@ function learn(div){
                 var inputResponse = punctuationless.replace(/\s{2,}/g," ");
                 var KeywordResponse = 'R' + inputResponse;
                 div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "RESPONSE SET TO: " + inputResponse + '</p>';
-                div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "APPEND SCRIPT FILE WITH: " + '</p>';
-                div.innerHTML = div.innerHTML + '<p>' + keyword + '</p>';
-                div.innerHTML = div.innerHTML + '<p>' + KeywordResponse + '</p>';
-                div.innerHTML = div.innerHTML + '<p>' + "#" + '</p>';
+                $.post( "autoadd.php", { keyword: , time: "2pm" } )
+                //div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "APPEND SCRIPT FILE WITH: " + '</p>';
+                //div.innerHTML = div.innerHTML + '<p>' + keyword + '</p>';
+                //div.innerHTML = div.innerHTML + '<p>' + KeywordResponse + '</p>';
+                //div.innerHTML = div.innerHTML + '<p>' + "#" + '</p>';
 
             }
 
