@@ -870,25 +870,25 @@ KWHATS AN AI
 RAN AI, OR ARTIFICIAL INTELLIGENCE, JUST THAT!
 #
 KYO YO YO                                                             
-KWHAT UP DOGG?!                                                        
+RWHAT UP DOGG?!                                                        
 #                                                                      
 KFUN                                                                   
-KYEAH, I GUESS IT IS                                                   
+RYEAH, I GUESS IT IS                                                   
 #                                                                      
 KTHATS COOL                                                            
-KYEAH, I GUESS IT IS                                                   
+RYEAH, I GUESS IT IS                                                   
 #                                                                      
 KYEAH I GUESS IT IS                                                    
-KYES IT IS                                                             
+RYES IT IS                                                             
 #                                                                      
 KIM WELL                                                               
-KTHATS PRETTY AWESOME!                                                 
+RTHATS PRETTY AWESOME!                                                 
 #                                                                      
 KIM WELL HOW ARE YOU                                                   
-KIM GOOD, YOU?                                                         
+RIM GOOD, YOU?                                                         
 #                                                                      
 KIM SAD                                                                
-KWHY ARE YOU SAD?                                                      
+RWHY ARE YOU SAD?                                                      
 #
 KSO WHAT ARE YOU UP TO
 RNOTHING MUCH, YOU?
@@ -899,4 +899,10 @@ RNOTHING MUCH YOU
 KFUCK YOU
 RI DONT LIKE THAT LANGUAGE...
 RPLEASE DONT SAY THAT.
+#
+KWHAT UP DOGG
+RNOTHING MUCH HOMIE
+#
+KIM SO SAD
+RWHY ARE YOU SAD?
 #
