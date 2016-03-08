@@ -176,19 +176,22 @@ function learn(div){
                 div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "Going back to beginning" + '</p>';
                 learn(div);
             }
-            else {
+            else if (inputfinal == "y") {
                 div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "PLEASE ENTER RESPONSE" + '</p>';
                 var userinput = document.getElementById('userresponse').value.toUpperCase();
                 var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
                 var inputResponse = punctuationless.replace(/\s{2,}/g," ");
                 var KeywordResponse = 'R' + inputResponse;
                 div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "RESPONSE SET TO: " + inputResponse + '</p>';
-                $.post( "autoadd.php", { keyword: keyword, response: KeywordResponse } )
+                $.post( "autoadd2.php", { keyword: keyword, response: KeywordResponse } )
                 //div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "APPEND SCRIPT FILE WITH: " + '</p>';
                 //div.innerHTML = div.innerHTML + '<p>' + keyword + '</p>';
                 //div.innerHTML = div.innerHTML + '<p>' + KeywordResponse + '</p>';
                 //div.innerHTML = div.innerHTML + '<p>' + "#" + '</p>';
 
+            }
+            else {
+                console.log("error")
             }
 
     }
