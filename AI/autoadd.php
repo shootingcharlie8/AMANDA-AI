@@ -27,8 +27,8 @@ ini_set('display_errors', 1);
 <html>
    <body>
       <form action="" method="post">
-         Keyword: <input type="text" name="keyword" value="keyword" />
-         Response: <input type="text" name="response" value="response" />
+         Keyword: <input type="text" name="keyword" required />
+         Response: <input type="text" name="response" required />
          <input type = "submit" />
       </form>
       
