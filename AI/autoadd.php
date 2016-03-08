@@ -8,17 +8,15 @@ ini_set('display_errors', 1);
       $responseupper = strtoupper($response);
       $keywordFinal = "K" . $keywordupper . "\n";
       $responseFinal = "K" . $responseupper . "\n";
-      if( strpos(file_get_contents("user.txt"),$keywordFinal) !== false) {
-         if (strpos(file_get_contents("script.txt"),$keywordFinal) !== false) {
-            echo "Error: Keyword Exists!!";
-               // do stuff
-            }
-            else {
-               file_put_contents("user.txt", $keywordFinal, FILE_APPEND);
-               file_put_contents("user.txt", $responseFinal, FILE_APPEND);
-               file_put_contents("user.txt", "#\n", FILE_APPEND);
-               echo "Success!";
-            }
+      if (strpos(file_get_contents("script.txt"),$keywordFinal) !== false) {
+         echo "Error: Keyword Exists!!";
+            // do stuff
+         }
+         else {
+            file_put_contents("script.txt", $keywordFinal, FILE_APPEND);
+            file_put_contents("script.txt", $responseFinal, FILE_APPEND);
+            file_put_contents("script.txt", "#\n", FILE_APPEND);
+            echo "Success!";
          }
       }
 ?>
