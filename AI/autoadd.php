@@ -17,6 +17,10 @@ ini_set('display_errors', 1);
             file_put_contents("script.txt", $responseFinal, FILE_APPEND);
             file_put_contents("script.txt", "#\n", FILE_APPEND);
             echo "Success!";
+            file_put_contents("user.txt", $keywordFinal, FILE_APPEND);
+            file_put_contents("user.txt", $responseFinal, FILE_APPEND);
+            file_put_contents("user.txt", "#\n", FILE_APPEND);
+            echo "Success!";
          }
       }
 ?>
