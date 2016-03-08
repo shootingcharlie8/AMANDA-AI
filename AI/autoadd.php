@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
       $responseupper = strtoupper($response);
       $keywordFinal = "K" . $keywordupper . "\n";
       $responseFinal = "K" . $responseupper . "\n";
-      if( strpos(file_get_contents("user.txt"),$keywordFinal) !== false) {
+      if( strpos(file_get_contents("user.txt"),$keywordFinal) !== false & strpos(file_get_contents("script.txt"),$keywordFinal) !== false) {
          echo "Error: Keyword Exists!!";
          // do stuff
       }
