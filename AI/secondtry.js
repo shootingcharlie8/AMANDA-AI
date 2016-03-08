@@ -131,6 +131,8 @@ function findresponse(userinput, div){
             // console.log("not found!")
             div.innerHTML = div.innerHTML + '<p>' + "*RESPONSE NOT FOUND*" + '</p>';
             //learn(div);
+            div.scrollTop = div.scrollHeight;
+
 
         };
     }
