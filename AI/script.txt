@@ -890,3 +890,12 @@ KIM GOOD, YOU?
 KIM SAD                                                                
 KWHY ARE YOU SAD?                                                      
 #
+KSO WHAT ARE YOU UP TO
+RNOTHING MUCH, YOU?
+#
+KWHAT ARE YOU UP TO
+RNOTHING MUCH YOU
+#
+KFUCK YOU
+RI DONT LIKE THAT LANGUAGE...
+#
