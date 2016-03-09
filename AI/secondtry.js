@@ -119,6 +119,12 @@ function findresponse(userinput, div){
             }
             else {
                 writeresponce(responseArray[RandomResponceInt].toString(), div); 
+                //$.post( "log.php", { keyword: userinput, response: responseArray[RandomResponceInt].toString() } )
+                //var values = $(this).serialize();
+                $url = 'log.php';
+                console.log("keyword: " + userinput)
+                console.log("response: " + responseArray[RandomResponceInt].toString())
+                $.get($url, {keyword: userinput, response: responseArray[RandomResponceInt].toString()});
 
             }
 
@@ -130,6 +136,8 @@ function findresponse(userinput, div){
         else {
             // console.log("not found!")
             div.innerHTML = div.innerHTML + '<p>' + "*RESPONSE NOT FOUND*" + '</p>';
+            $url = 'unknown.php';
+            $.get($url, {keyword: userinput});
             //learn(div);
             div.scrollTop = div.scrollHeight;
 
@@ -144,6 +152,7 @@ function writeresponce(response, div) {
     // console.log("Writing: " + response)
     if (response != undefined) {
         div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
+        
 
     }
     else {
