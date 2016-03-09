@@ -125,6 +125,7 @@ function findresponse(userinput, div){
                 console.log("keyword: " + userinput)
                 console.log("response: " + responseArray[RandomResponceInt].toString())
                 $.get($url, {keyword: userinput, response: responseArray[RandomResponceInt].toString()});
+                $.get("Utils/database.php", {keyword: userinput, response: responseArray[RandomResponceInt].toString()});
 
             }
 

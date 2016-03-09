@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
         $response = $_GET['response'];
         //file_put_contents("log.txt", $keyword, FILE_APPEND);
         //file_put_contents("log.txt", $response, FILE_APPEND);
-        $file_name = "log.txt";
+        $file_name = "../textfiles/log.txt";
         $file_handler = fopen($file_name, 'a');
         fwrite($file_handler, "$keyword \n$response \n#\n");
         fclose($file_handler);

@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
    if ($_POST) {
-       $file = "script.txt";
+       $file = "../textfiles/script.txt";
       $keyword = $_POST['keyword'];
       $response = $_POST['response'];
       $keywordupper = strtoupper($keyword);
@@ -10,7 +10,7 @@ ini_set('display_errors', 1);
       $keywordFinal = "K" . $keywordupper . "\n";
       $responseFinal = "R" . $responseupper . "\n";
       $responseFinal2 = "R" . $responseupper;
-      if (strpos(file_get_contents("script2.txt"),$keywordFinal) !== false) {
+      if (strpos(file_get_contents("../textfiles/script.txt"),$keywordFinal) !== false) {
         echo "Keyword Exists, adding additional response.\n";
 
         //$file = "script.txt"; 
@@ -45,9 +45,9 @@ ini_set('display_errors', 1);
             file_put_contents($file, $responseFinal, FILE_APPEND);
             file_put_contents($file, "#\n", FILE_APPEND);
             echo "Success!\n";
-            file_put_contents("user.txt", $keywordFinal, FILE_APPEND);
-            file_put_contents("user.txt", $responseFinal, FILE_APPEND);
-            file_put_contents("user.txt", "#\n", FILE_APPEND);
+            file_put_contents("../textfiles/user.txt", $keywordFinal, FILE_APPEND);
+            file_put_contents("../textfiles/user.txt", $responseFinal, FILE_APPEND);
+            file_put_contents("../textfiles/user.txt", "#\n", FILE_APPEND);
             echo "Success!\n";
          }
       }

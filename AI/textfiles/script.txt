@@ -869,26 +869,26 @@ RHAM RADIO IS A HOBBY INVOLVING RADIO WAVES TO SEND SIGNALS TO OTHER PEOPLE
 KWHATS AN AI
 RAN AI, OR ARTIFICIAL INTELLIGENCE, JUST THAT!
 #
-KYO YO YO                                                             
-RWHAT UP DOGG?!                                                        
-#                                                                      
-KFUN                                                                   
-RYEAH, I GUESS IT IS                                                   
-#                                                                      
-KTHATS COOL                                                            
-RYEAH, I GUESS IT IS                                                   
-#                                                                      
-KYEAH I GUESS IT IS                                                    
-RYES IT IS                                                             
-#                                                                      
-KIM WELL                                                               
-RTHATS PRETTY AWESOME!                                                 
-#                                                                      
-KIM WELL HOW ARE YOU                                                   
-RIM GOOD, YOU?                                                         
-#                                                                      
-KIM SAD                                                                
-RWHY ARE YOU SAD?                                                      
+KYO YO YO
+RWHAT UP DOGG?!
+#
+KFUN
+RYEAH, I GUESS IT IS
+#
+KTHATS COOL
+RYEAH, I GUESS IT IS
+#
+KYEAH I GUESS IT IS
+RYES IT IS
+#
+KIM WELL
+RTHATS PRETTY AWESOME!
+#
+KIM WELL HOW ARE YOU
+RIM GOOD, YOU?
+#
+KIM SAD
+RWHY ARE YOU SAD?
 #
 KSO WHAT ARE YOU UP TO
 RNOTHING MUCH, YOU?
@@ -906,12 +906,12 @@ RNOTHING MUCH HOMIE
 KIM SO SAD
 RWHY ARE YOU SAD?
 #
-KHEY YOU
-RSUP YOU
-#
 KSUP YOU
 RNOTHING MUCH YOU
 #
 KBRUH
 RBRUH!!
+#
+KDAT FACE DOE
+RWHAT ARE THOSE?!
 #
