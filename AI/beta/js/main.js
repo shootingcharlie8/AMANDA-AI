@@ -1,223 +1,55 @@
-console.log("Main Javascript Loaded");
-function LoadDaFilez() {
-    var div = document.getElementById('response');
-    var oFrame = document.getElementById("frmFile");
-    var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
-    while (strRawContents.indexOf("\r") >= 0)
-        strRawContents = strRawContents.replace("\r", "");
-    var arrLines = strRawContents.split("\n");
-    //console.log(strRawContents);
-    //document.getElementById('response').innerHTML = '<p>' + "1" + '</p><br>';
-    //alert("File " + oFrame.src + " has " + arrLines.length + " lines");
-    //console.log("Loop alert 3");
-    //console.log("File " + oFrame.src + " has " + arrLines.length + " lines!");
-    for (var i = 0; i < arrLines.length; i++) {
-        //console.log("Loop alert 5");
-        var curLine = arrLines[i];
-        //alert("Line #" + (i + 1) + " is: '" + curLine + "'");
-        //document.getElementById('response').innerHTML = '<p>' + curLine + '</p><br>';
-        //div.innerHTML = div.innerHTML + '<p>' + curLine + '</p>';
-    }
+function getuserinput() {
+    var inputField = document.getElementById('userresponse').value;
+    var userinput2 = inputField.toUpperCase();
+    var punctuationless = userinput2.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+    var userinput = punctuationless.replace(/\s{2,}/g," ");
+    inputField = "";
+    return userinput;
 }
 function inputtext() {
-    //console.log("Loop alert 4");
+    var learning = false;
+    var userinput = getuserinput();
     var div = document.getElementById('response');
-    var userinput = document.getElementById('userresponse').value.toUpperCase();
     var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
     var userinput = punctuationless.replace(/\s{2,}/g," ");
     //alert("input = " + userinput)
-    if (userinput != "") {
+    if (userinput != "" && learning == false) {
         div.innerHTML = div.innerHTML + '<p>YOU: ' + userinput + '</p>';
         getresponse(userinput, div);
         var inputField = document.getElementById('userresponse');
         inputField.value = "";
-
     }
 }
 function getresponse(userinput, div){
-    //$.get("Utils/database.php", {keyword: userinput});
-    //$.get( "Utils/database.php", {keyword: userinput} {
     $.get( "Utils/database.php", { keyword: userinput } )
     .done(function( data ) {
-    //finalresp = data.replace("\n", "");
-    data2 = data.toString();
-    //finalresp = data2.replace(/(\r\n|\n|\r)/gm,"");
-    div.innerHTML = div.innerHTML + '<p>AMANDA: ' + data2 + '</p>';
-    //alert( "Data Loaded: " + data );
-   div.scrollTop = div.scrollHeight;
- 
-  });
-
-    //var myPhpValue = $("#myPhpValue").val();
-    //if(myPhpValue !== undefined || myPhpValue !== null){
-        //div.innerHTML = div.innerHTML + '<p>AMANDA: ' + myPhpValue + '</p>';
-        //console.log("myPhpValue: " + myPhpValue)
-
-    }
-    //console.log("myPhpValue: " + myPhpValue)
-//}
-function findresponse(userinput, div){
-    div.scrollTop = div.scrollHeight;
-    var all = document.getElementById("frmFile");
-    var RawContents = all.contentWindow.document.body.childNodes[0].innerHTML;
-    //console.log(RawContents);
-    //var searchreturn = RawContents.match('/K' + userinput + '/g');
-    //console.log("Loop alert 2");
-    //while (RawContents.indexOf("\r") >= 0) 
-    //RawContents = RawContents.replace("\r", "");
-    var arrLines = RawContents.split("\n");
-    var i = 0; 
-    //console.log(arrLines.length)
-    var found = false;
-    console.log("userinput: " + userinput)
-    while (i < arrLines.length) {
-            //console.log("ran for loop!")
-        //console.log("arrLines[i] = " + arrLines[i]);
-        var curLine = arrLines[i];
-        //console.log(arrLines[i])
-        //alert(curLine)
-        //console.log('K' + userinput)
-        var found2 = curLine.indexOf('K' + userinput);
-        console.log(found);
-        if (found2 == 0) {
-            var found = true;
-            console.log(curLine)
-            console.log(found2)
-            break;
-        }
-
-
-        /*if (arrLines[i] == 'K' + userinput) {
-            var found = true;
-            //console.log("found it!");
-            break;
-        }*/
-        i++;
-    }
-    //var found = curLine.match(/K + userinput + /g)
-    //console.log("found = " + found)
-    if (found == true) {
-        var responseArray = new Array();
-        //alert(curLine.substr(1));
-        //console.log("maybe infinate1")
-        while (curLine != "#"){
-            i++;
-            var curLine = arrLines[i];
-            //console.log(arrLines[i])
-            if (curLine != "#" & curLine.charAt(0) != "C") {
-                responseArray.push(curLine.substr(1));
-            };
-            //alert(responseArray)
-            //var found = found + 1;
-            //console.log("curLine = " + curLine);
-            //console.log(found);
-            
-        }
-
-        //console.log(responseArray);
-        //console.log(responseArray.length);
-        var u = responseArray.length;
-        var RandomResponceDec = ((Math.random() * u) + 0);
-        //console.log("RandomResponceDec=" + RandomResponceDec);
-        var RandomResponceInt = RandomResponceDec.toFixed(0);
-        // console.log(RandomResponceInt);
-        // CHECK IF RandomResponceInt IS OVER NUMBER OF RESPONCES
-        while (RandomResponceInt >= u) {
-            // console.log("RandomResponceInt IS TOO BIG! Stepping Down by 1");
-            var RandomResponceInt = RandomResponceInt-1
-            if (RandomResponceInt > u) {
-                // console.log("YOUR CODE IS F***ED UP!");
-                alert("critical error!")
-            };
-
-        }
-        if (RandomResponceInt <= u) {
-            // console.log("Writes 'undefined': " + responseArray[RandomResponceInt])
-            if (responseArray[RandomResponceInt] == undefined) {
-                //div.innerHTML = div.innerHTML + '<p>' + "*!Try Again!*" + '</p>';
-                // console.log("***CALLED ERRORLOOP***")
-                errorloop(responseArray[RandomResponceInt], div);
-
-            }
-            else {
-                writeresponce(responseArray[RandomResponceInt].toString(), div); 
-                //$.post( "log.php", { keyword: userinput, response: responseArray[RandomResponceInt].toString() } )
-                //var values = $(this).serialize();
-                $url = 'log.php';
-                console.log("keyword: " + userinput)
-                console.log("response: " + responseArray[RandomResponceInt].toString())
-                $.get($url, {keyword: userinput, response: responseArray[RandomResponceInt].toString()});
-                $.get("Utils/database.php", {keyword: userinput, response: responseArray[RandomResponceInt].toString()});
-                console.log("UserInput = " + userinput)
-                var myPhpValue = $("#myPhpValue").val();
-                if(myPhpValue != ''){
-                    div.innerHTML = div.innerHTML + '<p>AMANDA: ' + myPhpValue + '</p>';
-                }
-                console.log("myPhpValue: " +myPhpValue)
-            }
-
-        }
-
-
-            //div.innerHTML = div.innerHTML + '<p>' + userinput + '</p>';
-        }
-        else {
-            // console.log("not found!")
-            $.get("Utils/database.php", {keyword: userinput, response: responseArray[RandomResponceInt].toString()});
-
-            //div.innerHTML = div.innerHTML + '<p>' + "*RESPONSE NOT FOUND*" + '</p>';
-            //$url = 'unknown.php';
-            //$.get($url, {keyword: userinput});
-            //learn(div);
-            div.scrollTop = div.scrollHeight;
-
-
-        }
-    }
-function errorloop(response, div){
-    writeresponce(response, div); 
+        data2 = data.toString();
+        div.innerHTML = div.innerHTML + '<p>AMANDA: ' + data2 + '</p>';
+        div.scrollTop = div.scrollHeight;
+    });
 }
-function writeresponce(response, div) {
-    // console.log("Start of 'writeresponce'");
-    // console.log("Writing: " + response)
-    if (response !== undefined) {
-        var myPhpValue = $("#myPhpValue").val();
-        //From here you can the whaterver you like with you js Value
-        //div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
-
-        if(myPhpValue != ''){
-        div.innerHTML = div.innerHTML + '<p>AMANDA: ' + myPhpValue + '</p>';
-        }
-        console.log(myPhpValue)
-
-
-    }
-    else {
-        // console.log("Last resort caught undefined!")
-    }
-
-div.scrollTop = div.scrollHeight;
-
-
-}
-
 function learn(div){
     var InitIntro = 'HELLO, YOU HAVE ENTERED THE LEARNING FUNCTION OF AMANDA.'
     var InitIntro2 = 'PLEASE ENTER KEYWORD'
-    var userinput = document.getElementById('userresponse').value.toUpperCase();
-    var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
-    var inputfinal = punctuationless.replace(/\s{2,}/g," ");
+    var userinput = getuserinput();
+    console.log("Userinput:" + userinput + ";")
+
     div.innerHTML = div.innerHTML + '<p>LEARNING: ' + InitIntro + '</p>';
     div.innerHTML = div.innerHTML + '<p>LEARNING: ' + InitIntro2 + '</p>';
-    if (inputfinal == '!exit') {
-        div.innerHTML = div.innerHTML + '<p>LEARNING: ' + 'CALLED "!EXIT": EXITING!' + '</p>';
-
+    while (userinput == "") {
+        var userinput = getuserinput();
+        console.log("loop1")
     }
-    else {
-        var keyword = 'K' + inputfinal
-        console.log("keyword = " + inputfinal);
+    console.log("Userinput" + userinput)
+    if (userinput == 'EXIT') {
+            console.log("Called EXIT")
+            div.innerHTML = div.innerHTML + '<p>LEARNING: ' + 'CALLED "!EXIT": EXITING!' + '</p>';
+        }
+        else {
+            var keyword = inputfinal
+            console.log("keyword = " + inputfinal);
             div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "Is your keyword: " + keyword + '? (Y/n)</p>';
-            var userinput = document.getElementById('userresponse').value.toUpperCase();
+            var userinput = getuserinput();
             var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
             var inputfinal = punctuationless.replace(/\s{2,}/g," ");
             if (inputfinal == "n") {
@@ -226,23 +58,20 @@ function learn(div){
             }
             else if (inputfinal == "y") {
                 div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "PLEASE ENTER RESPONSE" + '</p>';
-                var userinput = document.getElementById('userresponse').value.toUpperCase();
+                var userinput = getuserinput();
                 var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
                 var inputResponse = punctuationless.replace(/\s{2,}/g," ");
-                var KeywordResponse = 'R' + inputResponse;
+                var KeywordResponse = inputResponse;
                 div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "RESPONSE SET TO: " + inputResponse + '</p>';
-                $.post( "autoadd2.php", { keyword: keyword, response: KeywordResponse } )
-                //div.innerHTML = div.innerHTML + '<p>LEARNING: ' + "APPEND SCRIPT FILE WITH: " + '</p>';
-                //div.innerHTML = div.innerHTML + '<p>' + keyword + '</p>';
-                //div.innerHTML = div.innerHTML + '<p>' + KeywordResponse + '</p>';
-                //div.innerHTML = div.innerHTML + '<p>' + "#" + '</p>';
+                $.get( "Utils/learn.php", { keyword: keyword, response: KeywordResponse } );
 
             }
             else {
                 console.log("error")
             }
-
-    }
+    
+        } 
+    
 
 
 

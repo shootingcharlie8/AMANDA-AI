@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-   if ($_POST) {
+   if (isset($_GET['keyword']) && (isset($_GET['response']))) {
        /*$file = "../textfiles/script.txt";
       $keyword = $_POST['keyword'];
       $response = $_POST['response'];
@@ -55,12 +55,12 @@ ini_set('display_errors', 1);
     $username = "localuser";
     $password = "LocalPass";
     $dbname = "amanda";
-    $keyword = $_POST['keyword'];
-    $response = $_POST['response'];
+    $keyword = $_GET['keyword'];
+    $response = $_GET['response'];
     $keywordupper = strtoupper($keyword);
     $responseupper = strtoupper($response);
     // Create connection
-    
+    /*
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
@@ -78,18 +78,8 @@ ini_set('display_errors', 1);
     
     $conn->close();     
     }
-    
-    //echo $keywordupper;
-    //echo $responseupper;
+    */
+    echo $keywordupper . "<br>";
+    echo $responseupper . "<br>";
+   }
 ?>
-<html>
-   <body>
-      <form action="" method="post">
-         Keyword: <input type="text" name="keyword" required />
-         Response: <input type="text" name="response" required />
-         <input type = "submit" />
-      </form>
-      
-   
-   </body>
-</html>
