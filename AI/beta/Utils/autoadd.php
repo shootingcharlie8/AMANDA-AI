@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
    if ($_POST) {
-      $file = "../textfiles/script.txt";
+       /*$file = "../textfiles/script.txt";
       $keyword = $_POST['keyword'];
       $response = $_POST['response'];
       $keywordupper = strtoupper($keyword);
@@ -49,8 +49,8 @@ ini_set('display_errors', 1);
             file_put_contents("../textfiles/user.txt", $responseFinal, FILE_APPEND);
             file_put_contents("../textfiles/user.txt", "#\n", FILE_APPEND);
             echo "Success!\n";
-         }
-    /*
+         }*/
+    
     $servername = "localhost";
     $username = "localuser";
     $password = "LocalPass";
@@ -75,7 +75,7 @@ ini_set('display_errors', 1);
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
     
-    $conn->close(); */    
+    $conn->close();     
     }
 ?>
 <html>

@@ -25,15 +25,37 @@ function inputtext() {
     var userinput = document.getElementById('userresponse').value.toUpperCase();
     var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
     var userinput = punctuationless.replace(/\s{2,}/g," ");
-    div.innerHTML = div.innerHTML + '<p>YOU: ' + userinput + '</p>';
     //alert("input = " + userinput)
     if (userinput != "") {
-        findresponse(userinput, div);
+        div.innerHTML = div.innerHTML + '<p>YOU: ' + userinput + '</p>';
+        getresponse(userinput, div);
         var inputField = document.getElementById('userresponse');
         inputField.value = "";
 
     }
 }
+function getresponse(userinput, div){
+    //$.get("Utils/database.php", {keyword: userinput});
+    //$.get( "Utils/database.php", {keyword: userinput} {
+    $.get( "Utils/database.php", { keyword: userinput } )
+    .done(function( data ) {
+    //finalresp = data.replace("\n", "");
+    data2 = data.toString();
+    //finalresp = data2.replace(/(\r\n|\n|\r)/gm,"");
+    div.innerHTML = div.innerHTML + '<p>AMANDA: ' + data2 + '</p>';
+    //alert( "Data Loaded: " + data );
+   div.scrollTop = div.scrollHeight;
+ 
+  });
+
+    //var myPhpValue = $("#myPhpValue").val();
+    //if(myPhpValue !== undefined || myPhpValue !== null){
+        //div.innerHTML = div.innerHTML + '<p>AMANDA: ' + myPhpValue + '</p>';
+        //console.log("myPhpValue: " + myPhpValue)
+
+    }
+    //console.log("myPhpValue: " + myPhpValue)
+//}
 function findresponse(userinput, div){
     div.scrollTop = div.scrollHeight;
     var all = document.getElementById("frmFile");
@@ -126,7 +148,12 @@ function findresponse(userinput, div){
                 console.log("response: " + responseArray[RandomResponceInt].toString())
                 $.get($url, {keyword: userinput, response: responseArray[RandomResponceInt].toString()});
                 $.get("Utils/database.php", {keyword: userinput, response: responseArray[RandomResponceInt].toString()});
-
+                console.log("UserInput = " + userinput)
+                var myPhpValue = $("#myPhpValue").val();
+                if(myPhpValue != ''){
+                    div.innerHTML = div.innerHTML + '<p>AMANDA: ' + myPhpValue + '</p>';
+                }
+                console.log("myPhpValue: " +myPhpValue)
             }
 
         }
@@ -136,8 +163,10 @@ function findresponse(userinput, div){
         }
         else {
             // console.log("not found!")
-            div.innerHTML = div.innerHTML + '<p>' + "*RESPONSE NOT FOUND*" + '</p>';
-            $url = 'unknown.php';
+            $.get("Utils/database.php", {keyword: userinput, response: responseArray[RandomResponceInt].toString()});
+
+            //div.innerHTML = div.innerHTML + '<p>' + "*RESPONSE NOT FOUND*" + '</p>';
+            //$url = 'unknown.php';
             //$.get($url, {keyword: userinput});
             //learn(div);
             div.scrollTop = div.scrollHeight;
@@ -152,8 +181,15 @@ function writeresponce(response, div) {
     // console.log("Start of 'writeresponce'");
     // console.log("Writing: " + response)
     if (response !== undefined) {
-        div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
-        
+        var myPhpValue = $("#myPhpValue").val();
+        //From here you can the whaterver you like with you js Value
+        //div.innerHTML = div.innerHTML + '<p>AMANDA: ' + response + '</p>';
+
+        if(myPhpValue != ''){
+        div.innerHTML = div.innerHTML + '<p>AMANDA: ' + myPhpValue + '</p>';
+        }
+        console.log(myPhpValue)
+
 
     }
     else {
