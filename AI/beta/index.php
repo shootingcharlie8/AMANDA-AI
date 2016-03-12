@@ -65,7 +65,7 @@
             <input class="lead inputclass" type="text" name="name" id="userresponse" autocomplete="off" value="HEY!" onclick="value = '';"><br>
 
             <p class="lead">
-            <button class="btn btn-lg btn-default" onclick="inputtext();">Type</button>
+            <button class="btn btn-lg btn-default" onclick="inputtext()">Type</button>
 			<script> 
 			$( "#userresponse" ).keypress(function( event ) {
 			  	if ( event.which == 13 ) {
@@ -77,7 +77,7 @@
               <a href="#" class="btn btn-lg btn-default" onclick="pingsocket();">Learn more</a>
             </p>
             <p>EXTRA WANRING: THIS IS THE BETA VERSION OF A PROJECT CURRENTLY IN DEVELOPMENT! I CAN NOT PERDICT HOW AMANDA WILL RESPOND!</p>
-            <p>AMANDA-AI is a Hackathon project originally created in 24 hours. AMANDA is curently functioning but in its <code> BETA STAGES!</code>. The current source code is available at <a href="https://github.com/shootingcharlie8/AMANDA-AI/">Github here</a>, and should be everything you need to start hacking. The future should bring the following fetures to AMANDA:</p>
+            <p>AMANDA-AI is a Hackathon project originally created in 24 hours. AMANDA is currently functioning but in its <code>BETA STAGE!</code>. The current source code is available at <a href="https://github.com/shootingcharlie8/AMANDA-AI/">Github here</a>, and should be everything you need to start hacking. The future should bring the following features to AMANDA:</p>
             <ul>
                 <li>Larger, smarter keyword & response database</li>
                 <li>Ability to add to database</li>

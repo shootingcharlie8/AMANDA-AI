@@ -12,7 +12,6 @@ function inputtext() {
     var div = document.getElementById('response');
     var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
     var userinput = punctuationless.replace(/\s{2,}/g," ");
-    //alert("input = " + userinput)
     if (userinput != "" && learning == false) {
         div.innerHTML = div.innerHTML + '<p>YOU: ' + userinput + '</p>';
         getresponse(userinput, div);
@@ -26,10 +25,11 @@ function getresponse(userinput, div){
         data2 = data.toString();
         div.innerHTML = div.innerHTML + '<p>AMANDA: ' + data2 + '</p>';
         div.scrollTop = div.scrollHeight;
-        $.get( "Utils/learn.php", { keyword: userinput, response: data2 } );
+        $.get( "Utils/log.php", { keyword: userinput, response: data2 } )
 
     });
 }
+/*
 function learn(div){
     var InitIntro = 'HELLO, YOU HAVE ENTERED THE LEARNING FUNCTION OF AMANDA.'
     var InitIntro2 = 'PLEASE ENTER KEYWORD'
@@ -78,3 +78,4 @@ function learn(div){
 
 
 }
+*/

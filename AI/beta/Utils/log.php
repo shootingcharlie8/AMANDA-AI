@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-if ($_GET) {
+if (isset($_GET['keyword'])&&(isset($_GET['response']))) {
         $keyword = $_GET['keyword'];
         $response = $_GET['response'];
         //file_put_contents("log.txt", $keyword, FILE_APPEND);
