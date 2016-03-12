@@ -36,12 +36,7 @@
     <![endif]-->
   </head>
 
-  <body>  <?php
-include($_SERVER['DOCUMENT_ROOT']."/database.php?keyword=HEY");?>
-
-  <script type="text/javascript">
-  //alert("***DISCLAIMER*** THIS IS IN THE MOST BASIC FORM OF DEVELOPMENT. FUNCTIONALITY OF THIS APPLICATION IS NOT GUARANTEED. ")</script>
-    <iframe id="frmFile" src="textfiles/script.txt" style="display: none;"> 
+  <body>
 	</iframe>
     <div class="site-wrapper">
 

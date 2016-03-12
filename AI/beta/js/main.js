@@ -26,6 +26,8 @@ function getresponse(userinput, div){
         data2 = data.toString();
         div.innerHTML = div.innerHTML + '<p>AMANDA: ' + data2 + '</p>';
         div.scrollTop = div.scrollHeight;
+        $.get( "Utils/learn.php", { keyword: userinput, response: data2 } );
+
     });
 }
 function learn(div){
