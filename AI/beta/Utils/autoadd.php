@@ -10,6 +10,8 @@ ini_set('display_errors', 1);
     $response = $_POST['response'];
     $keywordupper = strtoupper($keyword);
     $responseupper = strtoupper($response);
+    $ip = $_SERVER["REMOTE_ADDR"];
+
     // Create connection
     
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,8 +20,8 @@ ini_set('display_errors', 1);
         die("Connection failed: " . $conn->connect_error);
     } 
     
-    $sql = "INSERT INTO amanda (keyword, response)
-    VALUES ('" . $keywordupper . "', '" . $responseupper . "')";
+    $sql = "INSERT INTO amanda3 (keyword, response, client_ip)
+    VALUES ('" . $keywordupper . "', '" . $responseupper . "', '" . $ip . "')";
     
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
@@ -30,14 +32,15 @@ ini_set('display_errors', 1);
     $conn->close();     
     }
 ?>
-<html>
-   <body>
-      <form action="" method="post">
-         Keyword: <input type="text" name="keyword" required />
-         Response: <input type="text" name="response" required />
-         <input type = "submit" />
-      </form>
-      
-   
-   </body>
-</html>
+  <html>
+
+  <body>
+    <form action="" method="post">
+      Keyword: <input type="text" name="keyword" required /> Response: <input type="text" name="response" required />
+      <input type="submit" />
+    </form>
+
+
+  </body>
+
+  </html>

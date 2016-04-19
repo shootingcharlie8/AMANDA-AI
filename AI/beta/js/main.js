@@ -1,3 +1,5 @@
+var lastresponse = "";
+//console.log("reset lastresponse")
 function getuserinput() {
     var inputField = document.getElementById('userresponse').value;
     var userinput2 = inputField.toUpperCase();
@@ -20,13 +22,14 @@ function inputtext() {
     }
 }
 function getresponse(userinput, div){
-    $.get( "Utils/database.php", { keyword: userinput } )
+    $.get( "Utils/database.php", { keyword: userinput, lastsaid: lastresponse} )
     .done(function( data ) {
         data2 = data.toString();
-        div.innerHTML = div.innerHTML + '<p>AMANDA: ' + data2 + '</p>';
+        div.innerHTML = div.innerHTML + '<p>AMANDA: ' + data2.replace(/(\r\n|\n|\r)/gm,"") + '</p>';
         div.scrollTop = div.scrollHeight;
-        $.get( "Utils/log.php", { keyword: userinput, response: data2 } )
-
+        $.get( "Utils/log.php", { keyword: userinput, response: data2.replace(/(\r\n|\n|\r)/gm,"") } );
+        var lastresponse = data2;
+      //console.log("lastresponse set to: " + lastresponse)
     });
 }
 /*
