@@ -3,52 +3,59 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 if (isset($_GET['keyword'])) {
-    $keyword3 = strtoupper($_GET['keyword']);
-    $servername = "localhost";
-    $username = "localuser";
-    $password = "LocalPass";
-    $dbname = "amanda";
+    $host = 'localhost';
+    $db   = 'amanda';
+    $user = 'localuser';
+    $pass = 'LocalPass';
+    $charset = 'utf8';
+    
+    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+    $opt = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+    $pdo = new PDO($dsn, $user, $pass, $opt);
+    
     $p = 0;
     $o = 0;
     $s = 0;
     $simarray = array();
     $simarray2 = array();
     $simarray3 = array();
-    if (isset($_GET['lastsaid'])) {
-      $lastsaid = strtoupper($_GET['lastsaid']);
-      //echo $lastsaid . "<br>";
-    }
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } 
-    //$beforeresponse = explode(" ", $keyword3);
+    $keyword3 = strtoupper($_GET['keyword']);
+
     $responses2 = explode(" ", $keyword3);
     $removedWords = array('OF', 'IN', 'TO', 'FOR', 'WITH', 'ON', 'AT', 'FROM', 'BY', 'AS');
     $responses = array_diff($responses2, $removedWords);
     //print_r ($responses);
   $a = 0;
-    while ($a < count($responses)) {
+    //while ($a < count($responses)) {
         //$sql = "SELECT * FROM `amanda` WHERE `Keyword` LIKE '%" . $responses[$a] . "%'";
-      $sql = "SELECT *, LEVENSHTEIN(`Keyword`, '" . $keyword3 . "') AS distance FROM amanda3 ORDER BY `distance` ASC";
-        $result = $conn->query($sql);
+      $stmt = $pdo->prepare ("SELECT *, LEVENSHTEIN(`Keyword`, :keyword) AS distance FROM amanda3 ORDER BY `distance` ASC");
+      $stmt->execute(['keyword' => $keyword3]);
+      $result = $stmt->fetch();
         $i = 0;
-        if ($result->num_rows > 0) {
+        echo ($result['Response']);
+        //echo count($result);
+        //print_r ($result);
+        if (sizeof($result) > 7) {
+            
             // output data of each row
-            while($row = $result->fetch_assoc()) {
+            /*while($row = $result->fetch_assoc()) {
                 $dbkeyword = $row["Keyword"];
                 //similar_text($keyword3, $dbkeyword, $sim);
                 $simarray[] = array("entry"=>$row["EntryNum"], 'sim' => $row["distance"], 'key' => $row["Keyword"], 'response' => $row["Response"], 'context' => $row["Context"]);
-                //echo $simarray[$i]['sim'] . " <br>";
+                echo $simarray[$i]['sim'] . " <br>";
                 $i++;
             }
+            */
         }
         else {
         }
         $a++;
-}
+//}
         function sort_by_order ($a, $b)
         {
            return $b['sim'] -  $a['sim'];
@@ -83,6 +90,7 @@ if (isset($_GET['keyword'])) {
 //            $p++;
           //}
        // }
+       /*
         if ($s >= 1){
             $randomres = rand(0, ($s));
             $bestresponse = $simarray[$randomres]['response'];
@@ -91,9 +99,9 @@ if (isset($_GET['keyword'])) {
         else if ($s == 0) {
           $bestresponse = $simarray[0]['response'];
         }
-        echo $bestresponse;
+        //echo $bestresponse;
 
         //$lastsaid = $bestresponse;
-    $conn->close();
+        */
 }
 ?>
