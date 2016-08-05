@@ -11,3 +11,11 @@ Larger, smarter keyword & response database
 Ability to add to database
 
 The ability to learn based on how users talk+what they say
+
+Calculator
+
+Text to speech
+
+Speech recognition
+
+Get the weather by location
