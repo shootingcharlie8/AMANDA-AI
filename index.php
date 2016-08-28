@@ -13,7 +13,7 @@
   ga('send', 'pageview');
 
 </script>
-		
+
   	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
 	<script src="js/main.js"></script>
 	<!--<script src="js/ping.js"></script>-->
@@ -32,7 +32,7 @@
 
     <title>AMANDA-AI BETA</title>
 
-	
+
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
@@ -80,7 +80,7 @@
 
             <p class="lead">
             <button class="btn btn-lg btn-default" onclick="inputtext()">Type</button>
-			<script> 
+			<script>
 			$( "#userresponse" ).keypress(function( event ) {
 			  	if ( event.which == 13 ) {
 
@@ -88,7 +88,7 @@
 			  	}
 			})
 			</script>
-              <a href="#" class="btn btn-lg btn-default">Join The Team!</a>
+              <a href="mailto:amanda@melidosianjr.com" class="btn btn-lg btn-default">Send us an email!</a>
             </p>
             <p>EXTRA WANRING: THIS IS THE BETA VERSION OF A PROJECT CURRENTLY IN DEVELOPMENT! I CAN NOT PERDICT HOW AMANDA WILL RESPOND!</p>
             <p>AMANDA-AI is a Hackathon project originally created in 24 hours. AMANDA is currently functioning but in its <code>BETA STAGE!</code>. The current source code is available at <a href="https://github.com/shootingcharlie8/AMANDA-AI/">Github here</a>, and should be everything you need to start hacking. The future should bring the following features to AMANDA:</p>
