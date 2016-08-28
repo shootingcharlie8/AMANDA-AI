@@ -33,7 +33,7 @@ if (isset($_GET['keyword'])) {
   $a = 0;
     //while ($a < count($responses)) {
         //$sql = "SELECT * FROM `amanda` WHERE `Keyword` LIKE '%" . $responses[$a] . "%'";
-      $stmt = $pdo->prepare ("SELECT *, LEVENSHTEIN(`Keyword`, :keyword) AS distance FROM amanda3 ORDER BY `distance` ASC");
+      $stmt = $pdo->prepare ("SELECT *, LEVENSHTEIN(`Keyword`, :keyword) AS distance FROM amanda3 ORDER BY `distance` ASC LIMIT 1");
       $stmt->execute(['keyword' => $keyword3]);
       $result = $stmt->fetch();
         $i = 0;
