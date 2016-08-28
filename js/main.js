@@ -16,7 +16,7 @@ function inputtext() {
   //More stripping of special charicters (Its redundant)
   var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
   var userinput = punctuationless.replace(/\s{2,}/g," ");
-  if (userinput != "" &&) {
+  if (userinput != "") {
     // Returns what you typed
     div.innerHTML = div.innerHTML + '<p>YOU: ' + userinput + '</p>';
     // Calls the getresponse function
