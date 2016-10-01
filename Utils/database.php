@@ -55,6 +55,7 @@ class Field_calculate {
     }
 }
 
+
 $Cal = new Field_calculate();
 
 if (isset($_GET['keyword'])) {
@@ -81,18 +82,27 @@ if (isset($_GET['keyword'])) {
   $simarray3 = array();
   // Puts input to UPPERCASE for easier parsing
   $keyword3 = strtoupper($_GET['keyword']);
-  //echo ($keyword3);
   // Seperates every word
 
-if(1 === preg_match('~[0-9]~', $keyword3)){
-    #has numbers
+if(1 === preg_match('~[0-9]~', $keyword3) AND strpos($keyword3, 'WEATHER') == true){
+    echo ("has numbers");
   $stripped = preg_replace('[a-zA-Z]', '', $keyword3);
 
     echo ($Cal->calculate($stripped));
-  //echo("HAS NUMBERS!");
-  //echo($stripped);
 }
+  elseif (strpos($keyword3, 'WEATHER') !== false) {
+    $strippedzip = (preg_replace('/\D/', '', $keyword3));
+    $mapurl = 'http://maps.googleapis.com/maps/api/geocode/json?address=%20'.$strippedzip.'&sensor=false';
+    $mapcontent = file_get_contents($mapurl);
+    $mapjson = json_decode($mapcontent, true);
+    $lat = ($mapjson["results"][0]['geometry']['location']['lat']);
+    $lng = ($mapjson["results"][0]['geometry']['location']['lng']);
+    $url = 'https://api.darksky.net/forecast/23f974c6c1a8870802812097922056b6/' . $lat . ',' . $lng . '';
+    $content = file_get_contents($url);
+    $weatherjson = json_decode($content, true);
+    echo "It is currently: ", $weatherjson['currently']['summary'], " with a tempreture of ", $weatherjson['currently']['temperature'], ' degrees F.';
 
+  }
   else {
     
       $responses2 = explode(" ", $keyword3);
