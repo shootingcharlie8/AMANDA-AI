@@ -84,8 +84,8 @@ if (isset($_GET['keyword'])) {
   $keyword3 = strtoupper($_GET['keyword']);
   // Seperates every word
 
-if(1 === preg_match('~[0-9]~', $keyword3) AND strpos($keyword3, 'WEATHER') == true){
-    echo ("has numbers");
+if(1 === preg_match('~[0-9]~', $keyword3) AND strpos($keyword3, 'WEATHER') == false){
+    #echo ("has numbers");
   $stripped = preg_replace('[a-zA-Z]', '', $keyword3);
 
     echo ($Cal->calculate($stripped));
