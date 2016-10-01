@@ -99,7 +99,6 @@
             </ul>
 
           </div>
-
           <div class="mastfoot">
             <div class="inner">
             	<p>AMANDA-AI Created by Charlie Melidosian</p>

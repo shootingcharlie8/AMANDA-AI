@@ -4,7 +4,7 @@ function getuserinput() {
   // Makes input UPPERCASE
   var userinput2 = inputField.toUpperCase();
   // Replaces special charicters
-  var punctuationless = userinput2.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+  var punctuationless = userinput2.replace(/[,#!$%\^&\*;:{}=\_`~()?]/g,"");
   var userinput = punctuationless.replace(/\s{2,}/g," ");
   inputField = "";
   return userinput;
@@ -14,7 +14,7 @@ function inputtext() {
   var userinput = getuserinput();
   var div = document.getElementById('response');
   //More stripping of special charicters (Its redundant)
-  var punctuationless = userinput.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+  var punctuationless = userinput.replace(/[,#!$%\^&\*;:{}=\_`~()?]/g,"");
   var userinput = punctuationless.replace(/\s{2,}/g," ");
   if (userinput != "") {
     // Returns what you typed

@@ -2,7 +2,7 @@
 Automated Mainframe And Networked Database Administration
 
 AMANDA-AI is a Hackathon project originally created in 24 hours.
-AMANDA is curently functioning but in its BETA STAGES!.
+AMANDA is curently functioning but in its BETA STAGES!
 The current source code is available here, and should be everything you need to start hacking.
 The future should bring the following fetures to AMANDA:
 
