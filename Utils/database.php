@@ -100,8 +100,9 @@ if(1 === preg_match('~[0-9]~', $keyword3) AND strpos($keyword3, 'WEATHER') == fa
     $url = 'https://api.darksky.net/forecast/23f974c6c1a8870802812097922056b6/' . $lat . ',' . $lng . '';
     $content = file_get_contents($url);
     $weatherjson = json_decode($content, true);
-    echo "It is currently: ", $weatherjson['currently']['summary'], " with a tempreture of ", $weatherjson['currently']['temperature'], ' degrees F.';
-
+    $finalweather= "It is currently: ".$weatherjson['currently']['summary']." with a tempreture of ".$weatherjson['currently']['temperature'].' degrees F.';
+//    $finalweather = ("It is currently: ", $weatherjson['currently']['summary'], " with a temperature of ", $weatherjson['currently']['temperature'], " degrees F.");
+    echo strtoupper($finalweather);
   }
   else {
     
